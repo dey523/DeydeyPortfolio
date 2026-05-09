@@ -1,9 +1,7 @@
-// ===== CURSOR ORB =====
+// CURSOR
 const cursorOrb = document.getElementById('cursor-orb');
 let mx = -100, my = -100, cx = -100, cy = -100;
-
 document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-
 function animateCursor() {
   cx += (mx - cx) * 0.12;
   cy += (my - cy) * 0.12;
@@ -13,7 +11,7 @@ function animateCursor() {
 }
 animateCursor();
 
-// ===== FIREFLIES — YELLOW/GOLD ONLY =====
+// FIREFLIES — yellow/gold/amber ONLY (hue 35–52)
 const canvas = document.getElementById('firefly-canvas');
 const ctx = canvas.getContext('2d');
 let flies = [];
@@ -26,57 +24,54 @@ resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
 function createFly() {
-  // hue range 38–52 = pure yellow/amber gold only
-  const hue = 38 + Math.random() * 14;
   return {
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
-    r: Math.random() * 2.2 + 0.8,
-    alpha: Math.random() * 0.5 + 0.15,
-    alphaDir: (Math.random() > 0.5 ? 1 : -1) * 0.005,
-    vx: (Math.random() - 0.5) * 0.35,
-    vy: (Math.random() - 0.5) * 0.35,
-    hue: hue,
-    sat: 95 + Math.random() * 5,
-    light: 65 + Math.random() * 20
+    r: Math.random() * 2 + 0.8,
+    alpha: Math.random() * 0.45 + 0.1,
+    alphaDir: (Math.random() > 0.5 ? 1 : -1) * 0.004,
+    vx: (Math.random() - 0.5) * 0.3,
+    vy: (Math.random() - 0.5) * 0.3,
+    hue: 35 + Math.random() * 17,   // 35=orange-gold, 52=pure yellow — NO blue, no green
+    sat: 90 + Math.random() * 10,
+    light: 60 + Math.random() * 20
   };
 }
 
-for (let i = 0; i < 60; i++) flies.push(createFly());
+for (let i = 0; i < 65; i++) flies.push(createFly());
 
 function drawFlies() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   flies.forEach(f => {
-    f.x += f.vx;
-    f.y += f.vy;
+    f.x += f.vx; f.y += f.vy;
     f.alpha += f.alphaDir;
-    if (f.alpha > 0.8 || f.alpha < 0.05) f.alphaDir *= -1;
+    if (f.alpha > 0.75 || f.alpha < 0.05) f.alphaDir *= -1;
     if (f.x < 0) f.x = canvas.width;
     if (f.x > canvas.width) f.x = 0;
     if (f.y < 0) f.y = canvas.height;
     if (f.y > canvas.height) f.y = 0;
 
-    const grd = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r * 6);
-    grd.addColorStop(0, `hsla(${f.hue},${f.sat}%,${f.light}%,${f.alpha})`);
-    grd.addColorStop(0.4, `hsla(${f.hue},${f.sat}%,${f.light - 10}%,${f.alpha * 0.5})`);
-    grd.addColorStop(1, `hsla(${f.hue},80%,50%,0)`);
+    const g = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r * 7);
+    g.addColorStop(0,   `hsla(${f.hue},${f.sat}%,${f.light}%,${f.alpha})`);
+    g.addColorStop(0.3, `hsla(${f.hue},${f.sat}%,${f.light - 8}%,${f.alpha * 0.6})`);
+    g.addColorStop(1,   `hsla(${f.hue},80%,45%,0)`);
 
     ctx.beginPath();
-    ctx.arc(f.x, f.y, f.r * 6, 0, Math.PI * 2);
-    ctx.fillStyle = grd;
+    ctx.arc(f.x, f.y, f.r * 7, 0, Math.PI * 2);
+    ctx.fillStyle = g;
     ctx.fill();
   });
   requestAnimationFrame(drawFlies);
 }
 drawFlies();
 
-// ===== NAVBAR SCROLL =====
+// NAVBAR
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 60);
 });
 
-// ===== MOBILE NAV =====
+// MOBILE NAV
 document.getElementById('nav-toggle').addEventListener('click', () => {
   document.getElementById('nav-links').classList.toggle('open');
 });
@@ -84,7 +79,7 @@ document.querySelectorAll('.nav-links a').forEach(a => {
   a.addEventListener('click', () => document.getElementById('nav-links').classList.remove('open'));
 });
 
-// ===== MUSIC =====
+// MUSIC
 const music = document.getElementById('bg-music');
 const musicControl = document.getElementById('music-control');
 const musicIcon = document.getElementById('music-icon');
@@ -104,30 +99,24 @@ musicControl.addEventListener('click', () => {
     musicPlaying = true;
   }
 });
-
 window.addEventListener('click', () => {
-  if (!musicPlaying) {
-    music.play().then(() => { musicPlaying = true; }).catch(() => {});
-  }
+  if (!musicPlaying) { music.play().then(() => { musicPlaying = true; }).catch(() => {}); }
 }, { once: true });
 
-// ===== SCROLL REVEAL =====
+// SCROLL REVEAL + SKILL BARS
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       e.target.classList.add('visible');
       const fill = e.target.querySelector('.skill-fill');
-      if (fill) {
-        setTimeout(() => { fill.style.width = fill.dataset.width + '%'; }, 200);
-      }
+      if (fill) setTimeout(() => { fill.style.width = fill.dataset.width + '%'; }, 200);
       revealObserver.unobserve(e.target);
     }
   });
 }, { threshold: 0.15 });
-
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// ===== MODALS =====
+// MODALS
 function openModal(name) {
   const m = document.getElementById('modal-' + name);
   if (m) { m.classList.add('open'); document.body.style.overflow = 'hidden'; }
@@ -147,7 +136,7 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// ===== CONTACT FORM =====
+// CONTACT FORM
 function handleSubmit(e) {
   e.preventDefault();
   const btn = e.target.querySelector('.submit-btn');
