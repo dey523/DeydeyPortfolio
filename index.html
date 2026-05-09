@@ -18,7 +18,7 @@
     <span id="music-label">Music</span>
   </div>
   <audio id="bg-music" loop>
-    <source src="blackbird.mp3" type="audio/mpeg"/>
+    <source src="assets/music/blackbird.mp3" type="audio/mpeg"/>
   </audio>
 
   <nav id="navbar">
@@ -40,8 +40,7 @@
     <div class="hero-content">
       <div class="profile-wrapper reveal">
         <div class="profile-ring">
-          <img src="dey.jpg" alt="Aldwin" class="profile-img"
-               onerror="this.src='https://ui-avatars.com/api/?name=AI&size=260&background=0a2540&color=0a84ff&bold=true'"/>
+          <img src="assets/images/dey.jpg" alt="Aldwin Andrei C. Ingco" class="profile-img"/>
         </div>
       </div>
       <h1 class="hero-title reveal">Hi! I'm <span class="glow-text">Aldwin Andrei C. Ingco</span></h1>
@@ -57,11 +56,11 @@
       <p class="hero-extra reveal">I enjoy building systems that solve real-world problems and combine software with hardware solutions.</p>
       <h3 class="section-sub-title reveal">Hobbies</h3>
       <div class="hobbies-grid reveal">
-        <div class="hobby-card"><span class="hobby-emoji">🏸</span><span>Badminton</span></div>
-        <div class="hobby-card"><span class="hobby-emoji">🏀</span><span>Basketball</span></div>
-        <div class="hobby-card"><span class="hobby-emoji">🐟</span><span>Fish Keeping</span></div>
-        <div class="hobby-card"><span class="hobby-emoji">🐹</span><span>Hamster Keeping</span></div>
-        <div class="hobby-card"><span class="hobby-emoji">🎸</span><span>Playing Guitar</span></div>
+        <div class="hobby-card"><span class="hobby-emoji"></span><span>Badminton</span></div>
+        <div class="hobby-card"><span class="hobby-emoji"></span><span>Basketball</span></div>
+        <div class="hobby-card"><span class="hobby-emoji"></span><span>Fish Keeping</span></div>
+        <div class="hobby-card"><span class="hobby-emoji"></span><span>Hamster Keeping</span></div>
+        <div class="hobby-card"><span class="hobby-emoji"></span><span>Playing Guitar</span></div>
       </div>
     </div>
   </section>
@@ -70,11 +69,12 @@
   <section id="education">
     <h2 class="section-title reveal">Education <span class="glow-text">Timeline</span></h2>
     <div class="timeline">
+
       <div class="timeline-item reveal">
         <div class="timeline-dot"></div>
         <div class="edu-card">
           <div class="edu-img-wrap">
-            <img src="marsu.jpg" alt="MarSU" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+            <img src="assets/images/marsu.jpg" alt="MarSU" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
             <div class="edu-img-fallback"><i class="fas fa-university"></i></div>
           </div>
           <div class="edu-info">
@@ -85,11 +85,12 @@
           </div>
         </div>
       </div>
+
       <div class="timeline-item reveal">
         <div class="timeline-dot"></div>
         <div class="edu-card">
           <div class="edu-img-wrap">
-            <img src="mnhs.jpg" alt="MNHS" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+            <img src="assets/images/mnhs.jpg" alt="MNHS" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
             <div class="edu-img-fallback"><i class="fas fa-school"></i></div>
           </div>
           <div class="edu-info">
@@ -100,11 +101,12 @@
           </div>
         </div>
       </div>
+
       <div class="timeline-item reveal">
         <div class="timeline-dot"></div>
         <div class="edu-card">
           <div class="edu-img-wrap">
-            <img src="dlhms.jpg" alt="Don Luis" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+            <img src="assets/images/dlhms.jpg" alt="DLHMS" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
             <div class="edu-img-fallback"><i class="fas fa-book-open"></i></div>
           </div>
           <div class="edu-info">
@@ -115,6 +117,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -182,7 +185,7 @@
     <div class="projects-grid">
       <div class="project-card reveal" onclick="openModal('paramandin')">
         <div class="project-logo-wrap">
-          <img src="paramandin.jpg" alt="ParaMandin"
+          <img src="assets/images/paramandin.jpg" alt="ParaMandin"
                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
           <div class="project-logo-fallback"><i class="fas fa-route"></i></div>
         </div>
@@ -192,7 +195,7 @@
       </div>
       <div class="project-card reveal" onclick="openModal('desbank')">
         <div class="project-logo-wrap">
-          <img src="desbank.jpg" alt="DesBank"
+          <img src="assets/images/desbank.jpg" alt="DesBank"
                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
           <div class="project-logo-fallback"><i class="fas fa-file-alt"></i></div>
         </div>
@@ -298,7 +301,7 @@
         <button type="submit" class="submit-btn">
           <span>Send Message</span><i class="fas fa-paper-plane"></i>
         </button>
-        <p id="form-success" style="display:none;color:#0a84ff;margin-top:1rem;text-align:center;">✅ Message sent! I'll get back to you soon.</p>
+        <p id="form-success" style="display:none;color:#f5c518;margin-top:1rem;text-align:center;">✅ Message sent! I'll get back to you soon.</p>
       </form>
     </div>
   </section>
